@@ -11,7 +11,8 @@ import java.util.List;
 public class MyBot extends TelegramLongPollingBot {
     private String name;
 
-    public MyBot(String name) {
+    public MyBot(String name, String token) {
+        super(token);
         this.name = name;
     }
 
