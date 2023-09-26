@@ -15,6 +15,8 @@
 
         <!--TELEGRAM-->
         <org.telegram.version>6.8.0</org.telegram.version>
+        <!--CONFIG-->
+        <org.yaml.snakeyaml.version>1.33</org.yaml.snakeyaml.version>
     </properties>
 
     <dependencies>
@@ -23,6 +25,13 @@
             <groupId>org.telegram</groupId>
             <artifactId>telegrambots</artifactId>
             <version>${org.telegram.version}</version>
+        </dependency>
+
+        <!--CONFIG-->
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>${org.yaml.snakeyaml.version}</version>
         </dependency>
     </dependencies>
 

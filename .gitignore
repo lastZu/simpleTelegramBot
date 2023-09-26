@@ -5,6 +5,7 @@ target/
 
 ### Project ###
 .git
+*.config*
 
 ### IntelliJ IDEA ###
 .idea
