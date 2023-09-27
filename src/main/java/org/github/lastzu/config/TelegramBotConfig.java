@@ -10,7 +10,7 @@ import java.io.InputStream;
 
 public class TelegramBotConfig {
     public static final String DEFAULT_TELEGRAM_BOT_CONFIG = "telegram-bot.config.yml";
-    public static final String CONFIG_PATH = "./src/main/resources/";
+    public static final String CONFIG_PATH = "./";
     private String name;
     private String token;
 
@@ -21,7 +21,7 @@ public class TelegramBotConfig {
     }
     public static TelegramBotConfig getInstance(String configName) throws FileNotFoundException {
         InputStream inputStream = new FileInputStream(
-                new File(CONFIG_PATH + DEFAULT_TELEGRAM_BOT_CONFIG)
+                CONFIG_PATH + DEFAULT_TELEGRAM_BOT_CONFIG
         );
 
         Yaml yaml = new Yaml(new Constructor(TelegramBotConfig.class));
