@@ -18,13 +18,7 @@ public class Main {
     public static void main(String[] args) {
         logger.info("Start configuration");
 
-        TelegramBotConfig config;
-        try {
-            config = TelegramBotConfig.getInstance();
-        } catch (FileNotFoundException e) {
-            logger.error("Could not get TelegramBotConfig: {}", e.getStackTrace());
-            return;
-        }
+        TelegramBotConfig config = TelegramBotConfig.getInstance();
 
         TelegramBotsApi botsApi;
         try {
