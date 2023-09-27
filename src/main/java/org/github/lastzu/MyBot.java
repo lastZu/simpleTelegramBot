@@ -1,14 +1,18 @@
 package org.github.lastzu;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 public class MyBot extends TelegramLongPollingBot {
+    final Logger logger = LoggerFactory.getLogger(MyBot.class);
     private String name;
 
     public MyBot(String name, String token) {
@@ -18,6 +22,7 @@ public class MyBot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
+        logger.debug("Receive update");
         if (!update.hasMessage()) return;
 
         Message message = update.getMessage();
@@ -25,6 +30,7 @@ public class MyBot extends TelegramLongPollingBot {
 
         String text = message.getText();
         long chatId = message.getChatId();
+        logger.debug("Get text - {} from chat - {}", text, chatId);
 
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId);
@@ -33,7 +39,7 @@ public class MyBot extends TelegramLongPollingBot {
         try {
             execute(sendMessage);
         } catch (TelegramApiException e) {
-            e.printStackTrace();
+            logger.warn("Could not send message: {}", e.getStackTrace());
         }
     }
 
