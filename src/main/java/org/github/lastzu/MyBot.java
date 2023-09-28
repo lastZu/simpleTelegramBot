@@ -1,5 +1,9 @@
 package org.github.lastzu;
 
+import org.github.lastzu.answer.Answer;
+
+import org.github.lastzu.answer.KeyboardAnswer;
+import org.github.lastzu.answer.TextAnswer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -7,6 +11,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
 
 public class MyBot extends TelegramLongPollingBot {
     final Logger logger = LoggerFactory.getLogger(MyBot.class);
@@ -20,18 +25,22 @@ public class MyBot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         logger.debug("Receive update");
+
         if (!update.hasMessage()) return;
 
         Message message = update.getMessage();
-        if (!message.hasText()) return;
 
-        String text = message.getText();
         long chatId = message.getChatId();
-        logger.debug("Get text - {} from chat - {}", text, chatId);
+        logger.debug("Get message from chatID - {}", chatId);
 
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId);
-        sendMessage.setText(text);
+
+        Answer textAnswer = new TextAnswer(message);
+        textAnswer.set(sendMessage);
+
+        Answer buttonAnswer = new KeyboardAnswer(message);
+        buttonAnswer.set(sendMessage);
 
         try {
             execute(sendMessage);
