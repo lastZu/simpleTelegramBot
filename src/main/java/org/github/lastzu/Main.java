@@ -22,11 +22,13 @@ public class Main {
 
         TelegramBotsApi botsApi;
         try {
+
             botsApi = new TelegramBotsApi(DefaultBotSession.class);
             botsApi.registerBot(new MyBot(
                     config.getName(),
                     config.getToken()
             ));
+
         } catch (TelegramApiException e) {
             logger.error("Could not register Bot: {}", e.getStackTrace());
         }
