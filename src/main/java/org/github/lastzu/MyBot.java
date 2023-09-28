@@ -8,12 +8,9 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import java.io.FileNotFoundException;
-import java.util.List;
-
 public class MyBot extends TelegramLongPollingBot {
     final Logger logger = LoggerFactory.getLogger(MyBot.class);
-    private String name;
+    private final String name;
 
     public MyBot(String name, String token) {
         super(token);
