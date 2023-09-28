@@ -9,8 +9,8 @@ import java.io.*;
 
 public class TelegramBotConfig {
     final static Logger logger = LoggerFactory.getLogger(TelegramBotConfig.class);
-    public static final String DEFAULT_TELEGRAM_BOT_CONFIG = "telegram-bot.config.yml";
-    public static final String CONFIG_PATH = "./";
+    private static final String DEFAULT_TELEGRAM_BOT_CONFIG = "telegram-bot.config.yml";
+    private static final String CONFIG_PATH = "./";
     private String name;
     private String token;
 
