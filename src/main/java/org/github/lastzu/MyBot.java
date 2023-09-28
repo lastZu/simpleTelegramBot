@@ -1,9 +1,6 @@
 package org.github.lastzu;
 
-import org.github.lastzu.answer.Answer;
-
-import org.github.lastzu.answer.KeyboardAnswer;
-import org.github.lastzu.answer.TextAnswer;
+import org.github.lastzu.answer.CommandAnswer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -27,20 +24,15 @@ public class MyBot extends TelegramLongPollingBot {
         logger.debug("Receive update");
 
         if (!update.hasMessage()) return;
+        logger.info("Receive update");
 
         Message message = update.getMessage();
 
-        long chatId = message.getChatId();
-        logger.debug("Get message from chatID - {}", chatId);
+        CommandAnswer commandAnswer = new CommandAnswer();
 
-        SendMessage sendMessage = new SendMessage();
-        sendMessage.setChatId(chatId);
-
-        Answer textAnswer = new TextAnswer(message);
-        textAnswer.set(sendMessage);
-
-        Answer buttonAnswer = new KeyboardAnswer(message);
-        buttonAnswer.set(sendMessage);
+        logger.info("Start creating answer");
+        SendMessage sendMessage = commandAnswer.create(message);
+        logger.info("Finish creating answer");
 
         try {
             execute(sendMessage);

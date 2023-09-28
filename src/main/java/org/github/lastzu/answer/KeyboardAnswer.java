@@ -12,18 +12,10 @@ import java.util.List;
 
 public class KeyboardAnswer implements Answer{
     final Logger logger = LoggerFactory.getLogger(KeyboardAnswer.class);
-    private final Message message;
+    private Answer nextAnswer;
 
-    public KeyboardAnswer(Message message) {
-        this.message = message;
-    }
-
-    /**
-     *  TODO - Не нравится, что sendMessage изменяется
-     * @param sendMessage - Message to send to Telegram User
-     */
     @Override
-    public void set(SendMessage sendMessage) {
+    public SendMessage get(Message message, SendMessage sendMessage) {
         InlineKeyboardMarkup keyboardMarkup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
         List<InlineKeyboardButton> row = new ArrayList();
@@ -35,5 +27,14 @@ public class KeyboardAnswer implements Answer{
         sendMessage.setReplyMarkup(keyboardMarkup);
 
         logger.info("Set keyboard to sendMessage");
+
+        if (nextAnswer != null) {
+            return nextAnswer.get(message, sendMessage);
+        }
+        return sendMessage;
+    }
+
+    public void setNextAnswer(Answer nextAnswer) {
+        this.nextAnswer = nextAnswer;
     }
 }
