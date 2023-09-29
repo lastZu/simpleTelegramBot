@@ -12,7 +12,7 @@ public class CommandMessageAnswer extends CainAnswerFactory{
         Answer command = new KeyboardAnswer(text);
 
         setAnswer(command);
-  
+
         logger.info("Create CommandAnswer");
     }
 }
