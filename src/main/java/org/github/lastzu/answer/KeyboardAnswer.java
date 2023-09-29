@@ -12,7 +12,7 @@ import java.util.List;
 
 public class KeyboardAnswer implements Answer{
     final Logger logger = LoggerFactory.getLogger(KeyboardAnswer.class);
-    private Answer origin;
+    private final Answer origin;
 
     public KeyboardAnswer(Answer origin) {
         this.origin = origin;
@@ -20,11 +20,11 @@ public class KeyboardAnswer implements Answer{
 
     @Override
     public void update(Message message, SendMessage sendMessage) {
-        origin.update(message, sendMessage);;
+        origin.update(message, sendMessage);
 
         InlineKeyboardMarkup keyboardMarkup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
-        List<InlineKeyboardButton> row = new ArrayList();
+        List<InlineKeyboardButton> row = new ArrayList<>();
         InlineKeyboardButton button = new InlineKeyboardButton("Test");
         button.setCallbackData("Pest");
         row.add(button);

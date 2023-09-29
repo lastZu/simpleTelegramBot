@@ -23,7 +23,7 @@ class TelegramBotConfigTest {
     @Test
     void testGetInstance() {
         TelegramBotConfig config = TelegramBotConfig.getInstance(
-                "test-telegram-bot.config.yml"
+                "src/test/resources/test-telegram-bot.config.yml"
         );
         assertEquals("TestBot", config.getName());
         assertEquals("test", config.getToken());
