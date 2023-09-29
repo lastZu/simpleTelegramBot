@@ -7,9 +7,7 @@ public interface Answer {
 
     /**
      *
-     * @return SendMessage - Message to send to Telegram User
+     * @param  SendMessage - Message to send to Telegram User
      */
-    SendMessage get(Message message, SendMessage sendMessage);
-
-    void setNextAnswer(Answer answer);
+    void update(Message message, SendMessage sendMessage);
 }

@@ -6,15 +6,16 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 
 abstract class CainAnswerFactory implements AnswerFactory{
-    private Answer firstAnswer;
+    private Answer answer;
 
     @Override
     public SendMessage create(Message message) {
         SendMessage sendMessage = new SendMessage();
-        return firstAnswer.get(message, sendMessage);
+        answer.update(message, sendMessage);
+        return sendMessage;
     }
 
-    public void setFirstAnswer(Answer firstAnswer) {
-        this.firstAnswer = firstAnswer;
+    public void setAnswer(Answer answer) {
+        this.answer = answer;
     }
 }

@@ -12,10 +12,16 @@ import java.util.List;
 
 public class KeyboardAnswer implements Answer{
     final Logger logger = LoggerFactory.getLogger(KeyboardAnswer.class);
-    private Answer nextAnswer;
+    private Answer origin;
+
+    public KeyboardAnswer(Answer origin) {
+        this.origin = origin;
+    }
 
     @Override
-    public SendMessage get(Message message, SendMessage sendMessage) {
+    public void update(Message message, SendMessage sendMessage) {
+        origin.update(message, sendMessage);;
+
         InlineKeyboardMarkup keyboardMarkup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
         List<InlineKeyboardButton> row = new ArrayList();
@@ -27,14 +33,5 @@ public class KeyboardAnswer implements Answer{
         sendMessage.setReplyMarkup(keyboardMarkup);
 
         logger.info("Set keyboard to sendMessage");
-
-        if (nextAnswer != null) {
-            return nextAnswer.get(message, sendMessage);
-        }
-        return sendMessage;
-    }
-
-    public void setNextAnswer(Answer nextAnswer) {
-        this.nextAnswer = nextAnswer;
     }
 }

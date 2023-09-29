@@ -1,6 +1,6 @@
 package org.github.lastzu;
 
-import org.github.lastzu.answer.CommandAnswer;
+import org.github.lastzu.answer.CommandMessageAnswer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -28,7 +28,7 @@ public class MyBot extends TelegramLongPollingBot {
 
         Message message = update.getMessage();
 
-        CommandAnswer commandAnswer = new CommandAnswer();
+        CommandMessageAnswer commandAnswer = new CommandMessageAnswer();
 
         logger.info("Start creating answer");
         SendMessage sendMessage = commandAnswer.create(message);
