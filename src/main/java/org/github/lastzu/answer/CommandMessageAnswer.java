@@ -13,6 +13,6 @@ public class CommandMessageAnswer extends CainAnswerFactory{
 
         setAnswer(command);
 
-        logger.info("Create CommandAnswer");
+        logger.info("Create CommandMessageAnswer");
     }
 }

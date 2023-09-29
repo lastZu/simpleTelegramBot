@@ -15,7 +15,7 @@ abstract class CainAnswerFactory implements AnswerFactory{
         return sendMessage;
     }
 
-    public void setAnswer(Answer answer) {
+    protected void setAnswer(Answer answer) {
         this.answer = answer;
     }
 }
