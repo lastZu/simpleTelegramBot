@@ -7,26 +7,28 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class EmptyAnswerTest {
+class EchoAnswerTest {
 
-    @DisplayName("Chat id mast be set from Message ch")
+    @DisplayName("Answer text should not change")
     @Test
-    void testSendMessage() {
-        EmptyAnswer emptyAnswer = new EmptyAnswer();
+    void update() {
+        Answer empty = new EmptyAnswer();
+        EchoAnswer answer = new EchoAnswer(empty);
 
         long id = 12345L;
+        String text = "test text";
 
         Message message = new TestAnswerUtils()
                 .setChatId(id)
+                .setText(text)
                 .createMessage();
         SendMessage sendMessage = new SendMessage();
-        emptyAnswer.update(message, sendMessage);
+        answer.update(message, sendMessage);
 
         assertNotNull(sendMessage);
 
-        String sendId = sendMessage.getChatId();
-        assertNotNull(sendId);
-        assertEquals(id, Long.parseLong(sendId));
+        String newText = sendMessage.getText();
+        assertNotNull(newText);
+        assertEquals(text, newText);
     }
-
 }

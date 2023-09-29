@@ -7,6 +7,7 @@ target/
 .git
 *.config*
 src/main/resources/logs/*
+logs/*
 
 ### IntelliJ IDEA ###
 .idea
