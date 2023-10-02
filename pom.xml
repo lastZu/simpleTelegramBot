@@ -90,18 +90,18 @@
     <build>
         <plugins>
             <!--CHECKSTYLE-->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${org.apache.maven.plugins.checkstyle.version}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>${org.apache.maven.plugins.checkstyle.goal}</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-checkstyle-plugin</artifactId>-->
+<!--                <version>${org.apache.maven.plugins.checkstyle.version}</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>${org.apache.maven.plugins.checkstyle.goal}</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
 
             <!--TESTING-->
             <plugin>

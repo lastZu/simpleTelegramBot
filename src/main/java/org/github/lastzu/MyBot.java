@@ -1,6 +1,6 @@
 package org.github.lastzu;
 
-import org.github.lastzu.answer.CommandMessageAnswer;
+import org.github.lastzu.answer.AnswerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -17,10 +17,12 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 final class MyBot extends TelegramLongPollingBot {
     private final Logger logger = LoggerFactory.getLogger(MyBot.class);
     private final String name;
+    private AnswerFactory answerFactory;
 
-    public MyBot(final String name, final String token) {
+    public MyBot(final String name, final String token, final AnswerFactory answerFactory) {
         super(token);
         this.name = name;
+        this.answerFactory = answerFactory;
     }
 
     @Override
@@ -34,10 +36,8 @@ final class MyBot extends TelegramLongPollingBot {
 
         Message message = update.getMessage();
 
-        CommandMessageAnswer commandAnswer = new CommandMessageAnswer();
-
         logger.info("Start creating answer");
-        SendMessage sendMessage = commandAnswer.create(message);
+        SendMessage sendMessage = answerFactory.create(message);
         logger.info("Finish creating answer");
 
         try {
@@ -50,5 +50,9 @@ final class MyBot extends TelegramLongPollingBot {
     @Override
     public String getBotUsername() {
         return name;
+    }
+
+    public void setAnswerFactory(AnswerFactory answerFactory) {
+        this.answerFactory = answerFactory;
     }
 }

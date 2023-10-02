@@ -1,5 +1,6 @@
 package org.github.lastzu;
 
+import org.github.lastzu.answer.CommandMessageAnswer;
 import org.github.lastzu.config.TelegramBotConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +21,8 @@ public class Main {
             botsApi = new TelegramBotsApi(DefaultBotSession.class);
             botsApi.registerBot(new MyBot(
                     config.getName(),
-                    config.getToken()
+                    config.getToken(),
+                    new CommandMessageAnswer()
             ));
 
         } catch (TelegramApiException e) {

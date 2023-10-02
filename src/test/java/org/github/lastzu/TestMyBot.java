@@ -1,5 +1,6 @@
 package org.github.lastzu;
 
+import org.github.lastzu.answer.EchoMessageAnswer;
 import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +14,7 @@ class TestMyBot {
     @DisplayName("Get bot name from String initialize")
     @Test
     void testGetBotUsername() {
-        MyBot myBot = new MyBot(name, "");
+        MyBot myBot = new MyBot(name, "", new EchoMessageAnswer());
         assertEquals(
                 name,
                 myBot.getBotUsername(),
